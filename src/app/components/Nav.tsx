@@ -1,5 +1,5 @@
-"use client";
 import { useState, useEffect } from "react";
+import Image from 'next/image';
 
 interface NavProps {
   onOpenModal: () => void;
@@ -50,17 +50,24 @@ export default function Nav({ onOpenModal }: NavProps) {
         <a
           href="#"
           style={{
-            fontFamily: "var(--font-syne)",
-            fontSize: "18px",
-            fontWeight: 700,
-            letterSpacing: "-0.5px",
-            color: "#fff",
-            textDecoration: "none",
-            whiteSpace: "nowrap",
-            flexShrink: 0,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            textDecoration: 'none',
+            color: '#fff',
           }}
         >
-          Portal<span style={{ color: "var(--indigo)" }}>Kit</span>
+          <Image src="/globe.svg" alt="logo" width={24} height={24} />
+          <span
+            style={{
+              fontFamily: "var(--font-syne)",
+              fontSize: "18px",
+              fontWeight: 700,
+              letterSpacing: "-0.5px",
+            }}
+          >
+            Portal Link
+          </span>
         </a>
 
         {/* Center links — desktop only, truly centered with auto margins */}
