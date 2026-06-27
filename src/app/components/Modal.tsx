@@ -9,7 +9,7 @@ interface ModalProps {
 export default function Modal({ isOpen, onClose }: ModalProps) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", agency: "", clients: "1-10 clients" });
+  const [form, setForm] = useState({ name: "", email: "", password: "", agency: "", clients: "1-10 clients" });
   const touchStartY = useRef(0);
 
   // Lock body scroll when open
@@ -21,7 +21,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
   if (!isOpen) return null;
 
   const handleSubmit = async () => {
-    if (!form.name || !form.email) return;
+    if (!form.name || !form.email || !form.password) return;
     setLoading(true);
     try {
       await fetch("/api/signup", {
@@ -40,7 +40,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
     onClose();
     setTimeout(() => {
       setSubmitted(false);
-      setForm({ name: "", email: "", agency: "", clients: "1-10 clients" });
+      setForm({ name: "", email: "", password: "", agency: "", clients: "1-10 clients" });
     }, 300);
   };
 
@@ -94,6 +94,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
             {[
               { label: "Your name", key: "name", type: "text", placeholder: "Alex Johnson", autoComplete: "name" },
               { label: "Work email", key: "email", type: "email", placeholder: "alex@youragency.com", autoComplete: "email" },
+              { label: "Password", key: "password", type: "password", placeholder: "••••••••", autoComplete: "new-password" },
               { label: "Agency name", key: "agency", type: "text", placeholder: "Your Agency", autoComplete: "organization" },
             ].map((f) => (
               <div key={f.key} className="mb-3.5">
@@ -141,7 +142,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
               </button>
               <button
                 onClick={handleSubmit}
-                disabled={loading || !form.name || !form.email}
+                disabled={loading || !form.name || !form.email || !form.password}
                 className="flex-[2] py-[13px] rounded-full text-sm font-semibold cursor-pointer border-none transition-colors duration-150 disabled:opacity-50"
                 style={{ background: "var(--white)", color: "var(--void)", fontFamily: "var(--font-inter)" }}
                 onMouseEnter={(e) => { e.currentTarget.style.background = "var(--smoke)"; }}

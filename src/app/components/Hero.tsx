@@ -55,7 +55,6 @@ export default function Hero({ onOpenModal }: HeroProps) {
           margin: "0 auto",
           width: "100%",
           display: "grid",
-          gridTemplateColumns: "1fr",
           gap: "48px",
           alignItems: "center",
         }}

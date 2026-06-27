@@ -1,4 +1,5 @@
 "use client";
+import { DomainIcon, DataIcon, ApprovalIcon, MessagingIcon, PermissionsIcon } from "./FeatureIcons";
 import { useEffect, useRef } from "react";
 
 export default function Features() {
@@ -75,11 +76,7 @@ export default function Features() {
 
       <div
         ref={ref}
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, 1fr)",
-          gap: "16px",
-        }}
+        className="bento-grid"
       >
         {/* Card 1 — span 5 */}
         <div
@@ -89,7 +86,7 @@ export default function Features() {
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)")}
         >
           <div className="bento-glow" />
-          <div style={{ width: "42px", height: "42px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", marginBottom: "20px", background: "rgba(107,92,231,0.12)", border: "1px solid rgba(107,92,231,0.2)" }}>🌐</div>
+          <div style={{ width: "42px", height: "42px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", marginBottom: "20px", background: "rgba(107,92,231,0.12)", border: "1px solid rgba(107,92,231,0.2)" }}><DomainIcon /></div>
           <div style={{ fontFamily: "var(--font-syne)", fontSize: "18px", fontWeight: 700, marginBottom: "10px", letterSpacing: "-0.5px" }}>Your domain. Fully.</div>
           <div style={{ fontSize: "14px", color: "#999", lineHeight: 1.65, fontWeight: 300 }}>Clients land on your URL, your logo, your palette. PortalKit is completely invisible.</div>
           <div style={{ marginTop: "24px", background: "#1A1A1A", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "10px", padding: "16px" }}>
@@ -108,7 +105,7 @@ export default function Features() {
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)")}
         >
           <div className="bento-glow" />
-          <div style={{ width: "42px", height: "42px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", marginBottom: "20px", background: "rgba(107,92,231,0.12)", border: "1px solid rgba(107,92,231,0.2)" }}>📊</div>
+          <div style={{ width: "42px", height: "42px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", marginBottom: "20px", background: "rgba(107,92,231,0.12)", border: "1px solid rgba(107,92,231,0.2)" }}><DataIcon /></div>
           <div style={{ fontFamily: "var(--font-syne)", fontSize: "18px", fontWeight: 700, marginBottom: "10px", letterSpacing: "-0.5px" }}>Live data, zero copy-paste</div>
           <div style={{ fontSize: "14px", color: "#999", lineHeight: 1.65, fontWeight: 300 }}>Connect Google Analytics, Search Console, Meta Ads, and more. Dashboards update automatically — no more manual reporting.</div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "8px", marginTop: "16px" }}>
@@ -139,9 +136,9 @@ export default function Features() {
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)")}
         >
           <div className="bento-glow" />
-          <div style={{ width: "42px", height: "42px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", marginBottom: "20px", background: "rgba(107,92,231,0.12)", border: "1px solid rgba(107,92,231,0.2)" }}>✅</div>
+          <div style={{ width: "42px", height: "42px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", marginBottom: "20px", background: "rgba(107,92,231,0.12)", border: "1px solid rgba(107,92,231,0.2)" }}><ApprovalIcon /></div>
           <div style={{ fontFamily: "var(--font-syne)", fontSize: "18px", fontWeight: 700, marginBottom: "10px", letterSpacing: "-0.5px" }}>Approval flows</div>
-          <div style={{ fontSize: "14px", color: "#999", lineHeight: 1.65, fontWeight: 300 }}>Clients approve deliverables in one click. No more email chains, no &ldquo;did you get my reply?&rdquo;</div>
+          <div style={{ fontSize: "14px", color: "#999", lineHeight: 1.65, fontWeight: 300 }}>Clients approve deliverables in one click. No more email chains, no “did you get my reply?”</div>
         </div>
 
         {/* Card 4 — span 4 */}
@@ -152,7 +149,7 @@ export default function Features() {
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)")}
         >
           <div className="bento-glow" />
-          <div style={{ width: "42px", height: "42px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", marginBottom: "20px", background: "rgba(107,92,231,0.12)", border: "1px solid rgba(107,92,231,0.2)" }}>💬</div>
+          <div style={{ width: "42px", height: "42px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", marginBottom: "20px", background: "rgba(107,92,231,0.12)", border: "1px solid rgba(107,92,231,0.2)" }}><MessagingIcon /></div>
           <div style={{ fontFamily: "var(--font-syne)", fontSize: "18px", fontWeight: 700, marginBottom: "10px", letterSpacing: "-0.5px" }}>Threaded messaging</div>
           <div style={{ fontSize: "14px", color: "#999", lineHeight: 1.65, fontWeight: 300 }}>Per-project conversations keep every decision documented and findable — not buried in inboxes.</div>
         </div>
@@ -165,7 +162,7 @@ export default function Features() {
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)")}
         >
           <div className="bento-glow" />
-          <div style={{ width: "42px", height: "42px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", marginBottom: "20px", background: "rgba(107,92,231,0.12)", border: "1px solid rgba(107,92,231,0.2)" }}>🔒</div>
+          <div style={{ width: "42px", height: "42px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", marginBottom: "20px", background: "rgba(107,92,231,0.12)", border: "1px solid rgba(107,92,231,0.2)" }}><PermissionsIcon /></div>
           <div style={{ fontFamily: "var(--font-syne)", fontSize: "18px", fontWeight: 700, marginBottom: "10px", letterSpacing: "-0.5px" }}>Role permissions</div>
           <div style={{ fontSize: "14px", color: "#999", lineHeight: 1.65, fontWeight: 300 }}>Control exactly what each client sees. Add team members with granular access levels.</div>
         </div>

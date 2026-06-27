@@ -95,15 +95,7 @@ export default function Testimonials() {
 
         <div
           ref={ref}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-            gap: "2px",
-            marginTop: "0",
-            background: "rgba(255,255,255,0.08)",
-            borderRadius: "16px",
-            overflow: "hidden",
-          }}
+          className="proof-grid"
         >
           {testimonials.map((t) => (
             <div

@@ -1,6 +1,10 @@
 "use client";
 import { useEffect, useRef } from "react";
 
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+
 interface PricingProps {
   onOpenModal: () => void;
 }
@@ -9,6 +13,7 @@ const plans = [
   {
     tier: "Starter",
     price: "99",
+    priceId: "price_1PJk8qK7oJg9g1J4g2XJ4Y5Z", // Replace with your actual price ID
     period: "per month · billed monthly",
     features: [
       "Up to 10 client portals",
@@ -22,6 +27,7 @@ const plans = [
   {
     tier: "Growth",
     price: "199",
+    priceId: "price_1PJk8qK7oJg9g1J4g2XJ4Y5Z", // Replace with your actual price ID
     period: "per month · billed monthly",
     features: [
       "Up to 50 client portals",
@@ -37,6 +43,7 @@ const plans = [
   {
     tier: "Agency",
     price: "399",
+    priceId: "price_1PJk8qK7oJg9g1J4g2XJ4Y5Z", // Replace with your actual price ID
     period: "per month · billed monthly",
     features: [
       "Unlimited portals",
@@ -76,6 +83,22 @@ export default function Pricing({ onOpenModal }: PricingProps) {
     return () => obs.disconnect();
   }, []);
 
+  const handleCheckout = async (priceId: string) => {
+    const response = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ priceId }),
+    });
+
+    const session = await response.json();
+
+    if (session.url) {
+      window.location.href = session.url;
+    }
+  };
+
   return (
     <section
       id="pricing"
@@ -114,11 +137,7 @@ export default function Pricing({ onOpenModal }: PricingProps) {
 
       <div
         ref={ref}
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "16px",
-        }}
+        className="pricing-grid"
       >
         {plans.map((plan) => (
           <div
@@ -259,6 +278,27 @@ export default function Pricing({ onOpenModal }: PricingProps) {
               }}
             >
               Start free trial
+            </button>
+            <button
+              onClick={() => handleCheckout('price_12345')}
+              style={{
+                display: "block",
+                width: "100%",
+                textAlign: "center",
+                padding: "14px",
+                borderRadius: "100px",
+                fontSize: "14px",
+                fontWeight: 600,
+                cursor: "pointer",
+                fontFamily: "var(--font-inter)",
+                transition: "all 0.2s",
+                border: plan.featured ? "none" : "1px solid rgba(255,255,255,0.12)",
+                background: plan.featured ? "#fff" : "transparent",
+                color: plan.featured ? "#6B5CE7" : "rgba(255,255,255,0.6)",
+                marginTop: '10px',
+              }}
+            >
+              Buy Now
             </button>
           </div>
         ))}
