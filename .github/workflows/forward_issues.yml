@@ -1,0 +1,24 @@
+name: Forward Issues to Email
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  forward-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Forward issue to email
+        uses: actions/email@v1
+        with:
+          to: gibcoutley@gmail.com
+          from: github-actions@users.noreply.github.com
+          subject: 'New Issue: ${{ github.event.issue.title }}'
+          body: |
+            A new issue has been opened in the ${{ github.repository }} repository.
+
+            Issue Number: #${{ github.event.issue.number }}
+            Title: ${{ github.event.issue.title }}
+            Opened by: ${{ github.event.issue.user.login }}
+
+            You can view the issue here: ${{ github.event.issue.html_url }}
