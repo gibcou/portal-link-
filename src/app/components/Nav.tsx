@@ -1,5 +1,5 @@
+"use client";
 import { useState, useEffect } from "react";
-import Image from 'next/image';
 
 interface NavProps {
   onOpenModal: () => void;
@@ -47,28 +47,16 @@ export default function Nav({ onOpenModal }: NavProps) {
         }}
       >
         {/* Logo — always left */}
-        <a
-          href="#"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            textDecoration: 'none',
-            color: '#fff',
-          }}
-        >
-          <Image src="/globe.svg" alt="logo" width={24} height={24} />
-          <span
-            style={{
-              fontFamily: "var(--font-syne)",
-              fontSize: "18px",
-              fontWeight: 700,
-              letterSpacing: "-0.5px",
-            }}
-          >
-            Portal Link
-          </span>
-        </a>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <img src="/icon.svg" alt="PortalKit Logo" style={{ height: "36px" }} />
+          <div>
+            <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
+              <span style={{ fontFamily: "var(--font-syne)", fontSize: "20px", fontWeight: 800, color: "#fff", letterSpacing: "-1px" }}>Portal</span>
+              <span style={{ fontFamily: "var(--font-syne)", fontSize: "20px", fontWeight: 800, color: "var(--indigo)", letterSpacing: "-1px" }}>Kit</span>
+            </div>
+            <div style={{ fontSize: "12px", color: "#999", marginTop: "-2px" }}>White-label client portals</div>
+          </div>
+        </div>
 
         {/* Center links — desktop only, truly centered with auto margins */}
         <div

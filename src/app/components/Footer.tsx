@@ -11,8 +11,11 @@ export default function Footer() {
         alignItems: "center",
       }}
     >
-      <div style={{ fontFamily: "var(--font-syne)", fontSize: "18px", fontWeight: 700 }}>
-        Portal<span style={{ color: "#6B5CE7" }}>Kit</span>
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <img src="/icon.svg" alt="PortalKit Logo" style={{ height: "28px" }} />
+        <span style={{ fontFamily: "var(--font-syne)", fontSize: "18px", fontWeight: 700, letterSpacing: "-0.5px" }}>
+          Portal<span style={{ color: "var(--indigo)" }}>Kit</span>
+        </span>
       </div>
       <div style={{ display: "flex", gap: "28px" }}>
         {links.map((link) => (

@@ -15,12 +15,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Portal Link",
-  description: "The better way to manage your client portals.",
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
+  title: "PortalKit — Client Portals for Agencies",
+  description:
+    "Give every client a stunning, branded portal to view reports, approve work, and stay in sync — all under your domain, your colors, your name.",
 };
 
 export default function RootLayout({

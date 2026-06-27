@@ -1,6 +1,4 @@
-import Image from 'next/image';
-
-const logos = Array(6).fill('/globe.svg');
+const agencies = ["Northgate", "Reid Digital", "Spark Agency", "Velo Creative", "Onyx Media", "Fulcrum"];
 
 export default function Logos() {
   return (
@@ -33,8 +31,23 @@ export default function Logos() {
             flexWrap: "wrap",
           }}
         >
-          {logos.map((logo, index) => (
-            <Image key={index} src={logo} alt={`logo ${index + 1}`} width={100} height={40} />
+          {agencies.map((name) => (
+            <div
+              key={name}
+              style={{
+                fontFamily: "var(--font-syne)",
+                fontSize: "16px",
+                fontWeight: 700,
+                color: "rgba(255,255,255,0.15)",
+                letterSpacing: "-0.5px",
+                transition: "color 0.2s",
+                cursor: "default",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.15)")}
+            >
+              {name}
+            </div>
           ))}
         </div>
       </div>
