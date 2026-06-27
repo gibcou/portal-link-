@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+:root {
+  --void: #080808;
+  --void-2: #111111;
+  --void-3: #1A1A1A;
+  --smoke: #F8F8F6;
+  --white: #FFFFFF;
+  --rule-dark: rgba(255,255,255,0.08);
+  --muted: #666;
+  --muted-light: #999;
+  --indigo: #6B5CE7;
+  --indigo-dim: rgba(107,92,231,0.12);
+  --indigo-glow: rgba(107,92,231,0.3);
+  --green: #22C55E;
+  --amber: #F59E0B;
+  --page-x: clamp(20px, 5vw, 80px);
+}
+
+html { scroll-behavior: smooth; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+img, svg { display: block; max-width: 100%; }
+
+body {
+  font-family: var(--font-inter, 'Inter', system-ui, sans-serif);
+  background: var(--void);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Custom cursor (fine pointer only) ── */
+.cursor, .cursor-ring { display: none; }
+@media (pointer: fine) {
+  .cursor {
+    display: block;
+    width: 8px; height: 8px;
+    background: var(--indigo);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    display: block;
+    width: 32px; height: 32px;
+    border: 1px solid rgba(107,92,231,0.5);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+  }
+}
+
+/* ── Ticker ── */
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 24s linear infinite;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── Hero grid lines ── */
+.hero-grid {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(var(--rule-dark) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule-dark) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+@media (min-width: 768px) {
+  .hero-grid { background-size: 80px 80px; }
+}
+
+/* ── Pulse ── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.pulse { animation: pulse 2s ease-in-out infinite; }
+
+/* ── Demo dot — slow green glow pulse ── */
+@keyframes demo-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+}
+.demo-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22C55E;
+  flex-shrink: 0;
+  animation: demo-pulse 2.5s ease-in-out infinite;
+}
+
+/* ── Bento glow ── */
+.bento-glow {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--indigo), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.bento-card { position: relative; }
+.bento-card:hover .bento-glow { opacity: 1; }
+
+/* ── Modal animation ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+.modal-anim { animation: fadeUp 0.25s ease; }
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Hamburger ── */
+.hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Mockup ── */
+@media (min-width: 960px) {
+  .mockup-3d { transform: rotateY(-8deg) rotateX(4deg); }
+}
+
+/* ── Responsive (≤ 900px) — match original HTML ── */
+@media (max-width: 900px) {
+  .section-pad { padding: 80px 24px !important; }
+  .logos-section-inner { padding: 40px 24px !important; }
+  .logos-row { gap: 24px !important; }
+  .bento-grid { grid-template-columns: 1fr !important; }
+  .bento-grid > * { grid-column: span 1 !important; }
+  .proof-grid { grid-template-columns: 1fr !important; }
+  .pricing-grid { grid-template-columns: 1fr !important; }
+  .cta-outer { padding: 80px 24px 80px !important; }
+  .cta-inner { padding: 48px 24px !important; }
+  .site-footer {
+    flex-direction: column !important;
+    gap: 20px !important;
+    text-align: center !important;
+    padding: 40px 24px !important;
+  }
+  .site-footer .footer-links { flex-wrap: wrap; justify-content: center; }
+}
